@@ -1150,7 +1150,7 @@ static void inv_cache_vmalloc(const struct LinuxMemArea *mem_area)
 		pg_ofs = vaddr & ~PAGE_MASK;
 		kaddr += pg_ofs;
 		chunk = min_t(ssize_t, vaddr_end - vaddr, PAGE_SIZE - pg_ofs);
-		arm_dma_ops.sync_single_for_cpu(NULL, kaddr, chunk, DMA_FROM_DEVICE);
+//		arm_dma_ops.sync_single_for_cpu(NULL, kaddr, chunk, DMA_FROM_DEVICE);
 		vaddr += chunk;
 	}
 }
@@ -1162,10 +1162,10 @@ static void inv_cache_page_list(const struct LinuxMemArea *mem_area)
 
 	pg_cnt = RANGE_TO_PAGES(mem_area->ui32ByteSize);
 	pg_list = mem_area->uData.sPageList.pvPageList;
-	while (pg_cnt--)
+/*	while (pg_cnt--)
 		arm_dma_ops.sync_single_for_cpu(NULL, page_address(*pg_list++),
 						PAGE_SIZE, DMA_FROM_DEVICE);
-}
+*/}
 
 void inv_cache_mem_area(const struct LinuxMemArea *mem_area)
 {
